@@ -1,4 +1,8 @@
-const API_BASE = import.meta.env.VITE_API_BASE || "http://localhost:8001";
+const RENDER_URL = "https://fullstack-mit-react-fastapi-1302.onrender.com";
+
+const API_BASE = window.location.hostname.includes("amplifyapp.com") 
+  ? RENDER_URL 
+  : "http://localhost:8001";
 
 export async function fetchDestinations() {
   const response = await fetch(`${API_BASE}/destinations`);

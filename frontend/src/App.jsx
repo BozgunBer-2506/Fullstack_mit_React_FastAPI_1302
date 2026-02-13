@@ -72,13 +72,17 @@ function App() {
   }
 
 const filteredDestinations = (destinations || []).filter((d) => {
-  const cityName = d.name || ""; 
-  const countryName = d.country || "";
+  if (!d) return false;
+
+  const name = String(d.name || "").toLowerCase();
+  const country = String(d.country || "").toLowerCase();
   const search = (searchTerm || "").toLowerCase();
-  
+  const tagsStr = Array.isArray(d.tags) ? d.tags.join(" ").toLowerCase() : String(d.tags || "").toLowerCase();
+
   return (
-    cityName.toLowerCase().includes(search) || 
-    countryName.toLowerCase().includes(search)
+    name.includes(search) || 
+    country.includes(search) || 
+    tagsStr.includes(search)
   );
 });
 
