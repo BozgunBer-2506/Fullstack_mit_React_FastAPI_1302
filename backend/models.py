@@ -9,5 +9,6 @@ class DestinationModel(Base):
     country = Column(String)
     continent = Column(String)
     note = Column(String)
+    tags = Column(String)
     visited = Column(Boolean, default=False)
     createdAt = Column(String)
