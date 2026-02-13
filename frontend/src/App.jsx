@@ -71,11 +71,16 @@ function App() {
     }
   }
 
-  const filteredDestinations = destinations.filter(
-    (d) =>
-      d.city.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      d.country.toLowerCase().includes(searchTerm.toLowerCase())
+const filteredDestinations = (destinations || []).filter((d) => {
+  const cityName = d.name || ""; 
+  const countryName = d.country || "";
+  const search = (searchTerm || "").toLowerCase();
+  
+  return (
+    cityName.toLowerCase().includes(search) || 
+    countryName.toLowerCase().includes(search)
   );
+});
 
   const indexOfLast = currentPage * itemsPerPage;
   const indexOfFirst = indexOfLast - itemsPerPage;
